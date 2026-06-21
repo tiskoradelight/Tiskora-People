@@ -153,3 +153,37 @@ window.onload = function () {
     }
 
 }
+
+function showAttendance() {
+
+    let attendance = JSON.parse(localStorage.getItem("attendance")) || [];
+
+    let table = document.getElementById("attendanceTable");
+
+    if (!table) return;
+
+    table.innerHTML = "";
+
+    attendance.forEach(function(item) {
+
+        table.innerHTML += `
+
+        <tr>
+
+            <td>${item.date}</td>
+
+            <td>${item.checkIn}</td>
+
+            <td>${item.checkOut}</td>
+
+            <td>${item.hours}</td>
+
+        </tr>
+
+        `;
+
+    });
+
+}
+
+showAttendance();
