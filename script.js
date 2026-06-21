@@ -73,40 +73,31 @@ function checkOut() {
         (difference % (1000 * 60 * 60)) / (1000 * 60)
     );
 
-    let workingHours =
+    document.getElementById("workingHours").innerHTML =
         hours + " Hours " + minutes + " Minutes";
 
-    document.getElementById("workingHours").innerHTML =
-        workingHours;
+    let history = JSON.parse(localStorage.getItem("attendanceHistory")) || [];
 
-
-    let attendance =
-        JSON.parse(localStorage.getItem("attendance")) || [];
-
-    attendance.push({
+    history.push({
 
         date: new Date().toLocaleDateString(),
 
-        checkIn:
-            checkInTime.toLocaleTimeString(),
+        checkIn: checkInTime.toLocaleTimeString(),
 
-        checkOut:
-            checkOutTime.toLocaleTimeString(),
+        checkOut: checkOutTime.toLocaleTimeString(),
 
-        workingHours:
-            workingHours
+        workingHours: hours + " Hours " + minutes + " Minutes"
 
     });
 
     localStorage.setItem(
-        "attendance",
-        JSON.stringify(attendance)
+        "attendanceHistory",
+        JSON.stringify(history)
     );
 
-    showAttendance();
+    showAttendanceHistory();
 
 }
-
 
 function saveProfile() {
 
@@ -223,5 +214,41 @@ window.onload = function () {
     }
 
     showAttendance();
+
+}
+function showAttendanceHistory() {
+
+    let history =
+        JSON.parse(localStorage.getItem("attendanceHistory")) || [];
+
+    let table = document.getElementById("attendanceTable");
+
+    if (!table) {
+
+        return;
+
+    }
+
+    table.innerHTML = "";
+
+    history.forEach(function(item) {
+
+        table.innerHTML += `
+
+        <tr>
+
+            <td>${item.date}</td>
+
+            <td>${item.checkIn}</td>
+
+            <td>${item.checkOut}</td>
+
+            <td>${item.workingHours}</td>
+
+        </tr>
+
+        `;
+
+    });
 
 }
