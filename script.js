@@ -1,4 +1,3 @@
-javascript
 function login() {
 
     let userId = document.getElementById("userId").value;
@@ -25,7 +24,6 @@ function login() {
 
     }
 
-    // Invalid Login
     else {
 
         document.getElementById("message").innerHTML =
@@ -35,11 +33,13 @@ function login() {
 
 }
 
+
 function logout() {
 
     window.location.href = "login.html";
 
 }
+
 
 function checkIn() {
 
@@ -51,6 +51,8 @@ function checkIn() {
         checkInTime.toLocaleTimeString();
 
 }
+
+
 function checkOut() {
 
     let checkOutTime = new Date();
@@ -74,6 +76,7 @@ function checkOut() {
 
     document.getElementById("workingHours").innerHTML = totalHours;
 
+
     let attendance = JSON.parse(localStorage.getItem("attendance")) || [];
 
     attendance.push({
@@ -95,12 +98,45 @@ function checkOut() {
 }
 
 
+function showAttendance() {
+
+    let attendance = JSON.parse(localStorage.getItem("attendance")) || [];
+
+    let table = document.getElementById("attendanceTable");
+
+    if (!table) return;
+
+    table.innerHTML = "";
+
+    attendance.forEach(function(item) {
+
+        table.innerHTML += `
+
+        <tr>
+
+            <td>${item.date}</td>
+
+            <td>${item.checkIn}</td>
+
+            <td>${item.checkOut}</td>
+
+            <td>${item.hours}</td>
+
+        </tr>
+
+        `;
+
+    });
+
+}
+
+
 
 window.onload = function () {
 
     let currentUser = localStorage.getItem("currentUser");
 
-    // Load saved Check In Time
+
     if (localStorage.getItem("checkInTime")) {
 
         document.getElementById("checkInTime").innerHTML =
@@ -108,13 +144,13 @@ window.onload = function () {
 
     }
 
-    // Load saved Check Out Time
     if (localStorage.getItem("checkOutTime")) {
 
         document.getElementById("checkOutTime").innerHTML =
             new Date(localStorage.getItem("checkOutTime")).toLocaleTimeString();
 
     }
+
 
     if (currentUser == "TD001") {
 
@@ -152,38 +188,6 @@ window.onload = function () {
 
     }
 
-}
-
-function showAttendance() {
-
-    let attendance = JSON.parse(localStorage.getItem("attendance")) || [];
-
-    let table = document.getElementById("attendanceTable");
-
-    if (!table) return;
-
-    table.innerHTML = "";
-
-    attendance.forEach(function(item) {
-
-        table.innerHTML += `
-
-        <tr>
-
-            <td>${item.date}</td>
-
-            <td>${item.checkIn}</td>
-
-            <td>${item.checkOut}</td>
-
-            <td>${item.hours}</td>
-
-        </tr>
-
-        `;
-
-    });
+    showAttendance();
 
 }
-
-showAttendance();
