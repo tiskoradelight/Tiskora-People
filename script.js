@@ -51,7 +51,6 @@ function checkIn() {
         checkInTime.toLocaleTimeString();
 
 }
-
 function checkOut() {
 
     let checkOutTime = new Date();
@@ -71,10 +70,31 @@ function checkOut() {
         (difference % (1000 * 60 * 60)) / (1000 * 60)
     );
 
-    document.getElementById("workingHours").innerHTML =
-        hours + " Hours " + minutes + " Minutes";
+    let totalHours = hours + " Hours " + minutes + " Minutes";
+
+    document.getElementById("workingHours").innerHTML = totalHours;
+
+    let attendance = JSON.parse(localStorage.getItem("attendance")) || [];
+
+    attendance.push({
+
+        date: new Date().toLocaleDateString(),
+
+        checkIn: checkInTime.toLocaleTimeString(),
+
+        checkOut: checkOutTime.toLocaleTimeString(),
+
+        hours: totalHours
+
+    });
+
+    localStorage.setItem("attendance", JSON.stringify(attendance));
+
+    showAttendance();
 
 }
+
+
 
 window.onload = function () {
 
