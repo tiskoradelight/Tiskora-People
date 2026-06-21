@@ -44,9 +44,14 @@ function logout() {
 
 function checkIn() {
 
+    let currentUser = localStorage.getItem("currentUser");
+
     let checkInTime = new Date();
 
-    localStorage.setItem("checkInTime", checkInTime);
+    localStorage.setItem(
+        currentUser + "_checkInTime",
+        checkInTime
+    );
 
     document.getElementById("checkInTime").innerHTML =
         checkInTime.toLocaleTimeString();
@@ -56,27 +61,41 @@ function checkIn() {
 
 function checkOut() {
 
+    let currentUser = localStorage.getItem("currentUser");
+
     let checkOutTime = new Date();
 
-    localStorage.setItem("checkOutTime", checkOutTime);
+    localStorage.setItem(
+        currentUser + "_checkOutTime",
+        checkOutTime
+    );
 
     document.getElementById("checkOutTime").innerHTML =
         checkOutTime.toLocaleTimeString();
 
-    let checkInTime = new Date(localStorage.getItem("checkInTime"));
+    let checkInTime =
+        new Date(localStorage.getItem(currentUser + "_checkInTime"));
 
     let difference = checkOutTime - checkInTime;
 
-    let hours = Math.floor(difference / (1000 * 60 * 60));
+    let hours = Math.floor(
+        difference / (1000 * 60 * 60)
+    );
 
     let minutes = Math.floor(
         (difference % (1000 * 60 * 60)) / (1000 * 60)
     );
 
-    document.getElementById("workingHours").innerHTML =
+    let totalHours =
         hours + " Hours " + minutes + " Minutes";
 
-    let history = JSON.parse(localStorage.getItem("attendanceHistory")) || [];
+    document.getElementById("workingHours").innerHTML =
+        totalHours;
+
+    let history =
+        JSON.parse(
+            localStorage.getItem(currentUser + "_attendanceHistory")
+        ) || [];
 
     history.push({
 
@@ -86,19 +105,21 @@ function checkOut() {
 
         checkOut: checkOutTime.toLocaleTimeString(),
 
-        workingHours: hours + " Hours " + minutes + " Minutes"
+        workingHours: totalHours
 
     });
 
     localStorage.setItem(
-        "attendanceHistory",
+
+        currentUser + "_attendanceHistory",
+
         JSON.stringify(history)
+
     );
 
     showAttendanceHistory();
 
 }
-
 function saveProfile() {
 
     let currentUser = localStorage.getItem("currentUser");
