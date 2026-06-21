@@ -1,3 +1,4 @@
+```css
 *{
     margin:0;
     padding:0;
@@ -7,14 +8,14 @@
 
 body{
     background:#f4f6f9;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
+    min-height:100vh;
 }
+
+/* Login Page */
 
 .login-container{
     width:100%;
+    height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -25,7 +26,7 @@ body{
     width:350px;
     padding:40px;
     border-radius:15px;
-    box-shadow:0 5px 20px rgba(0,0,0,0.2);
+    box-shadow:0px 5px 20px rgba(0,0,0,0.2);
     text-align:center;
 }
 
@@ -39,7 +40,8 @@ body{
     margin-bottom:25px;
 }
 
-input{
+input,
+textarea{
     width:100%;
     padding:12px;
     margin-bottom:15px;
@@ -64,13 +66,10 @@ button:hover{
     background:#1d4ed8;
 }
 
-#message{
-    margin-top:15px;
-    color:red;
-    font-size:14px;
-}
+/* Dashboard */
+
 .dashboard{
-    width:90%;
+    width:95%;
     margin:auto;
     padding:20px;
 }
@@ -78,24 +77,47 @@ button:hover{
 .cards{
     display:flex;
     gap:20px;
+    flex-wrap:wrap;
     margin-top:20px;
     margin-bottom:30px;
 }
 
 .card{
-    background:white;
     flex:1;
+    min-width:200px;
+    background:white;
     padding:20px;
     border-radius:15px;
-    box-shadow:0px 5px 15px rgba(0,0,0,0.2);
+    box-shadow:0px 5px 15px rgba(0,0,0,0.15);
     text-align:center;
+}
+
+.profile-card,
+.attendance-card{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0px 5px 15px rgba(0,0,0,0.15);
+    margin-bottom:20px;
+}
+
+.profile-card{
+    text-align:center;
+}
+
+.profile-image{
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    border:4px solid #2563eb;
 }
 
 table{
     width:100%;
-    background:white;
     border-collapse:collapse;
-    box-shadow:0px 5px 15px rgba(0,0,0,0.2);
+    background:white;
+    margin-top:20px;
+    box-shadow:0px 5px 15px rgba(0,0,0,0.15);
 }
 
 table th{
@@ -103,30 +125,48 @@ table th{
     color:white;
 }
 
-table th, table td{
+table th,
+table td{
     padding:15px;
     border:1px solid #ddd;
     text-align:center;
 }
-.profile-card{
-    background:white;
-    padding:20px;
-    border-radius:15px;
-    box-shadow:0px 5px 15px rgba(0,0,0,0.2);
-    text-align:center;
+
+h1{
+    color:#1e3a8a;
+    margin-bottom:15px;
+}
+
+h2{
+    margin-top:20px;
     margin-bottom:20px;
 }
 
-.profile-image{
-    width:150px;
-    height:150px;
-    border-radius:50%;
+h3{
+    margin-top:15px;
 }
 
-.attendance-card{
-    background:white;
-    padding:20px;
-    border-radius:15px;
-    box-shadow:0px 5px 15px rgba(0,0,0,0.2);
-    text-align:center;
+hr{
+    margin-top:25px;
+    margin-bottom:25px;
 }
+
+/* Mobile */
+
+@media(max-width:768px){
+
+    .cards{
+        flex-direction:column;
+    }
+
+    table{
+        font-size:12px;
+    }
+
+    .dashboard{
+        width:100%;
+        padding:10px;
+    }
+
+}
+```
