@@ -191,3 +191,22 @@ window.onload = function () {
     showAttendance();
 
 }
+
+function saveProfile() {
+
+    let currentUser = localStorage.getItem("currentUser");
+
+    let profile = {
+
+        photo: document.getElementById("photoUrl").value,
+        mobile: document.getElementById("mobile").value,
+        email: document.getElementById("email").value,
+        address: document.getElementById("address").value
+
+    };
+
+    localStorage.setItem(currentUser + "_profile", JSON.stringify(profile));
+
+    alert("Profile Saved Successfully");
+
+}
