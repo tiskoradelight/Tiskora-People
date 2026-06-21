@@ -202,8 +202,15 @@ showAttendanceHistory();
 }
 function showAttendanceHistory() {
 
-    let history =
-        JSON.parse(localStorage.getItem("attendanceHistory")) || [];
+    let currentUser = localStorage.getItem("currentUser");
+
+    let history = JSON.parse(
+
+        localStorage.getItem(
+            currentUser + "_attendanceHistory"
+        )
+
+    ) || [];
 
     let table = document.getElementById("attendanceTable");
 
@@ -236,3 +243,4 @@ function showAttendanceHistory() {
     });
 
 }
+
