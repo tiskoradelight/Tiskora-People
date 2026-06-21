@@ -73,15 +73,15 @@ function checkOut() {
         (difference % (1000 * 60 * 60)) / (1000 * 60)
     );
 
-    let workingHours = hours + " Hours " + minutes + " Minutes";
+    let workingHours =
+        hours + " Hours " + minutes + " Minutes";
 
     document.getElementById("workingHours").innerHTML =
         workingHours;
 
 
-    // Attendance Save
-
-    let attendance = JSON.parse(localStorage.getItem("attendance")) || [];
+    let attendance =
+        JSON.parse(localStorage.getItem("attendance")) || [];
 
     attendance.push({
 
@@ -121,11 +121,50 @@ function saveProfile() {
 
     };
 
-    localStorage.setItem(currentUser + "_profile", JSON.stringify(profile));
+    localStorage.setItem(
+        currentUser + "_profile",
+        JSON.stringify(profile)
+    );
 
     alert("Profile Saved Successfully");
 
 }
+
+
+function showAttendance() {
+
+    let attendance =
+        JSON.parse(localStorage.getItem("attendance")) || [];
+
+    let table =
+        document.getElementById("attendanceTable");
+
+    if (!table) return;
+
+    table.innerHTML = "";
+
+    attendance.forEach(function(record) {
+
+        table.innerHTML += `
+
+        <tr>
+
+            <td>${record.date}</td>
+
+            <td>${record.checkIn}</td>
+
+            <td>${record.checkOut}</td>
+
+            <td>${record.workingHours}</td>
+
+        </tr>
+
+        `;
+
+    });
+
+}
+
 
 
 window.onload = function () {
@@ -147,7 +186,7 @@ window.onload = function () {
         document.getElementById("employeeId").innerHTML = "TD002";
         document.getElementById("department").innerHTML = "Operations";
         document.getElementById("designation").innerHTML = "Executive";
-showAttendance();
+
     }
 
     else if (currentUser == "TD003") {
@@ -183,37 +222,6 @@ showAttendance();
 
     }
 
-}
-function showAttendance() {
-
-    let attendance =
-        JSON.parse(localStorage.getItem("attendance")) || [];
-
-    let table =
-        document.getElementById("attendanceTable");
-
-    if (!table) return;
-
-    table.innerHTML = "";
-
-    attendance.forEach(function(record) {
-
-        table.innerHTML += `
-
-        <tr>
-
-            <td>${record.date}</td>
-
-            <td>${record.checkIn}</td>
-
-            <td>${record.checkOut}</td>
-
-            <td>${record.workingHours}</td>
-
-        </tr>
-
-        `;
-
-    });
+    showAttendance();
 
 }
