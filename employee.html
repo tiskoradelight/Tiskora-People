@@ -1,2 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-a
+<div class="dashboard">
+
+    <h1>Employee Dashboard</h1>
+
+    <div class="profile-card">
+
+        <img src="https://via.placeholder.com/150" class="profile-image">
+
+        <h2>Employee Name</h2>
+
+        <p>Employee ID : TD001</p>
+
+        <p>Department : Operations</p>
+
+        <p>Designation : Executive</p>
+
+    </div>
+
+    <div class="attendance-card">
+
+        <h2>Attendance</h2>
+
+        <button onclick="checkIn()">Check In</button>
+
+        <br><br>
+
+        <button onclick="checkOut()">Check Out</button>
+
+        <br><br>
+
+        <h3>Check In Time :</h3>
+
+        <p id="checkInTime">--:--</p>
+
+        <h3>Check Out Time :</h3>
+
+        <p id="checkOutTime">--:--</p>
+
+    </div>
+
+    <button onclick="logout()">Logout</button>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
