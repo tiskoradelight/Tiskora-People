@@ -56,3 +56,46 @@ function checkOut(){
     document.getElementById("checkOutTime").innerHTML = time;
 
 }
+```javascript
+window.onload = function () {
+
+    let currentUser = localStorage.getItem("currentUser");
+
+    if (currentUser == "TD001") {
+
+        document.getElementById("employeeName").innerHTML = "Anjali";
+        document.getElementById("employeeId").innerHTML = "TD001";
+        document.getElementById("department").innerHTML = "Operations";
+        document.getElementById("designation").innerHTML = "Executive";
+
+    }
+
+    else if (currentUser == "TD002") {
+
+        document.getElementById("employeeName").innerHTML = "Prachi";
+        document.getElementById("employeeId").innerHTML = "TD002";
+        document.getElementById("department").innerHTML = "Operations";
+        document.getElementById("designation").innerHTML = "Executive";
+
+    }
+
+    else if (currentUser == "TD003") {
+
+        document.getElementById("employeeName").innerHTML = "Abhay";
+        document.getElementById("employeeId").innerHTML = "TD003";
+        document.getElementById("department").innerHTML = "Inventory";
+        document.getElementById("designation").innerHTML = "Executive";
+
+    }
+
+    else if (currentUser == "TD004") {
+
+        document.getElementById("employeeName").innerHTML = "Rahul";
+        document.getElementById("employeeId").innerHTML = "TD004";
+        document.getElementById("department").innerHTML = "Marketing";
+        document.getElementById("designation").innerHTML = "Executive";
+
+    }
+
+}
+```
