@@ -36,3 +36,18 @@ function logout(){
     window.location.href = "login.html";
 
 }
+function checkIn(){
+
+    let time = new Date().toLocaleTimeString();
+
+    document.getElementById("checkInTime").innerHTML = time;
+
+}
+
+function checkOut(){
+
+    let time = new Date().toLocaleTimeString();
+
+    document.getElementById("checkOutTime").innerHTML = time;
+
+}
