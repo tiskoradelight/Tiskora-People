@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,73 +19,20 @@
 
         <div class="card">
             <h3>Total Employees</h3>
-            <h1>4</h1>
+            <h1 id="totalEmployees">4</h1>
         </div>
 
         <div class="card">
             <h3>Present Employees</h3>
-            <h1>0</h1>
+            <h1 id="presentEmployees">0</h1>
         </div>
 
         <div class="card">
             <h3>Absent Employees</h3>
-            <h1>4</h1>
+            <h1 id="absentEmployees">4</h1>
         </div>
 
     </div>
-
-    <hr>
-
-    <h2>Employee List</h2>
-
-    <table border="1" cellpadding="10">
-
-        <thead>
-
-            <tr>
-
-                <th>Employee ID</th>
-                <th>Name</th>
-                <th>Department</th>
-                <th>Status</th>
-
-            </tr>
-
-        </thead>
-
-        <tbody>
-
-            <tr>
-                <td>TD001</td>
-                <td>Anjali</td>
-                <td>Operations</td>
-                <td>Absent</td>
-            </tr>
-
-            <tr>
-                <td>TD002</td>
-                <td>Prachi</td>
-                <td>Operations</td>
-                <td>Absent</td>
-            </tr>
-
-            <tr>
-                <td>TD003</td>
-                <td>Abhay</td>
-                <td>Inventory</td>
-                <td>Absent</td>
-            </tr>
-
-            <tr>
-                <td>TD004</td>
-                <td>Rahul</td>
-                <td>Marketing</td>
-                <td>Absent</td>
-            </tr>
-
-        </tbody>
-
-    </table>
 
     <hr>
 
@@ -96,44 +44,18 @@
 
             <tr>
 
+                <th>Employee ID</th>
                 <th>Name</th>
+                <th>Department</th>
+                <th>Status</th>
                 <th>Check In</th>
                 <th>Check Out</th>
-                <th>Working Hours</th>
 
             </tr>
 
         </thead>
 
-        <tbody>
-
-            <tr>
-                <td>Anjali</td>
-                <td>--</td>
-                <td>--</td>
-                <td>0 Hours</td>
-            </tr>
-
-            <tr>
-                <td>Prachi</td>
-                <td>--</td>
-                <td>--</td>
-                <td>0 Hours</td>
-            </tr>
-
-            <tr>
-                <td>Abhay</td>
-                <td>--</td>
-                <td>--</td>
-                <td>0 Hours</td>
-            </tr>
-
-            <tr>
-                <td>Rahul</td>
-                <td>--</td>
-                <td>--</td>
-                <td>0 Hours</td>
-            </tr>
+        <tbody id="adminAttendanceTable">
 
         </tbody>
 
@@ -149,3 +71,4 @@
 
 </body>
 </html>
+```
