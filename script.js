@@ -1,3 +1,4 @@
+javascript
 function login() {
 
     let userId = document.getElementById("userId").value;
@@ -11,21 +12,18 @@ function login() {
     }
 
     // Employee Login
-    javascript
-else if (
-    (userId === "TD001" && password === "123456") ||
-    (userId === "TD002" && password === "123456") ||
-    (userId === "TD003" && password === "123456") ||
-    (userId === "TD004" && password === "123456")
-) {
+    else if (
+        (userId === "TD001" && password === "123456") ||
+        (userId === "TD002" && password === "123456") ||
+        (userId === "TD003" && password === "123456") ||
+        (userId === "TD004" && password === "123456")
+    ) {
 
-    localStorage.setItem("currentUser", userId);
+        localStorage.setItem("currentUser", userId);
 
-    window.location.href = "employee.html";
+        window.location.href = "employee.html";
 
-}
-
-
+    }
 
     // Invalid Login
     else {
@@ -36,30 +34,67 @@ else if (
     }
 
 }
-function logout(){
+
+function logout() {
 
     window.location.href = "login.html";
 
 }
-function checkIn(){
 
-    let time = new Date().toLocaleTimeString();
+function checkIn() {
 
-    document.getElementById("checkInTime").innerHTML = time;
+    let checkInTime = new Date();
+
+    localStorage.setItem("checkInTime", checkInTime);
+
+    document.getElementById("checkInTime").innerHTML =
+        checkInTime.toLocaleTimeString();
+
+}
+
+function checkOut() {
+
+    let checkOutTime = new Date();
+
+    localStorage.setItem("checkOutTime", checkOutTime);
+
+    document.getElementById("checkOutTime").innerHTML =
+        checkOutTime.toLocaleTimeString();
+
+    let checkInTime = new Date(localStorage.getItem("checkInTime"));
+
+    let difference = checkOutTime - checkInTime;
+
+    let hours = Math.floor(difference / (1000 * 60 * 60));
+
+    let minutes = Math.floor(
+        (difference % (1000 * 60 * 60)) / (1000 * 60)
+    );
+
+    document.getElementById("workingHours").innerHTML =
+        hours + " Hours " + minutes + " Minutes";
 
 }
 
-function checkOut(){
-
-    let time = new Date().toLocaleTimeString();
-
-    document.getElementById("checkOutTime").innerHTML = time;
-
-}
-```javascript
 window.onload = function () {
 
     let currentUser = localStorage.getItem("currentUser");
+
+    // Load saved Check In Time
+    if (localStorage.getItem("checkInTime")) {
+
+        document.getElementById("checkInTime").innerHTML =
+            new Date(localStorage.getItem("checkInTime")).toLocaleTimeString();
+
+    }
+
+    // Load saved Check Out Time
+    if (localStorage.getItem("checkOutTime")) {
+
+        document.getElementById("checkOutTime").innerHTML =
+            new Date(localStorage.getItem("checkOutTime")).toLocaleTimeString();
+
+    }
 
     if (currentUser == "TD001") {
 
@@ -98,4 +133,3 @@ window.onload = function () {
     }
 
 }
-```
