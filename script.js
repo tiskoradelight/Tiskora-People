@@ -11,16 +11,21 @@ function login() {
     }
 
     // Employee Login
-    else if (
-        (userId === "TD001" && password === "123456") ||
-        (userId === "TD002" && password === "123456") ||
-        (userId === "TD003" && password === "123456") ||
-        (userId === "TD004" && password === "123456")
-    ) {
+    ```javascript
+else if (
+    (userId === "TD001" && password === "123456") ||
+    (userId === "TD002" && password === "123456") ||
+    (userId === "TD003" && password === "123456") ||
+    (userId === "TD004" && password === "123456")
+) {
 
-        window.location.href = "employee.html";
+    localStorage.setItem("currentUser", userId);
 
-    }
+    window.location.href = "employee.html";
+
+}
+```
+
 
     // Invalid Login
     else {
