@@ -184,19 +184,25 @@ window.onload = function () {
     }
 
 
-    if (localStorage.getItem("checkInTime")) {
 
-        document.getElementById("checkInTime").innerHTML =
-            new Date(localStorage.getItem("checkInTime")).toLocaleTimeString();
+if (localStorage.getItem(currentUser + "_checkInTime")) {
 
-    }
+    document.getElementById("checkInTime").innerHTML =
+        new Date(
+            localStorage.getItem(currentUser + "_checkInTime")
+        ).toLocaleTimeString();
 
-    if (localStorage.getItem("checkOutTime")) {
+}
 
-        document.getElementById("checkOutTime").innerHTML =
-            new Date(localStorage.getItem("checkOutTime")).toLocaleTimeString();
+if (localStorage.getItem(currentUser + "_checkOutTime")) {
 
-    }
+    document.getElementById("checkOutTime").innerHTML =
+        new Date(
+            localStorage.getItem(currentUser + "_checkOutTime")
+        ).toLocaleTimeString();
+
+}
+
 showAttendanceHistory();
 
 }
