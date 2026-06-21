@@ -122,42 +122,6 @@ function saveProfile() {
 }
 
 
-function showAttendance() {
-
-    let attendance =
-        JSON.parse(localStorage.getItem("attendance")) || [];
-
-    let table =
-        document.getElementById("attendanceTable");
-
-    if (!table) return;
-
-    table.innerHTML = "";
-
-    attendance.forEach(function(record) {
-
-        table.innerHTML += `
-
-        <tr>
-
-            <td>${record.date}</td>
-
-            <td>${record.checkIn}</td>
-
-            <td>${record.checkOut}</td>
-
-            <td>${record.workingHours}</td>
-
-        </tr>
-
-        `;
-
-    });
-
-}
-
-
-
 window.onload = function () {
 
     let currentUser = localStorage.getItem("currentUser");
@@ -212,8 +176,7 @@ window.onload = function () {
             new Date(localStorage.getItem("checkOutTime")).toLocaleTimeString();
 
     }
-
-    showAttendance();
+showAttendanceHistory();
 
 }
 function showAttendanceHistory() {
