@@ -73,8 +73,37 @@ function checkOut() {
         (difference % (1000 * 60 * 60)) / (1000 * 60)
     );
 
+    let workingHours = hours + " Hours " + minutes + " Minutes";
+
     document.getElementById("workingHours").innerHTML =
-        hours + " Hours " + minutes + " Minutes";
+        workingHours;
+
+
+    // Attendance Save
+
+    let attendance = JSON.parse(localStorage.getItem("attendance")) || [];
+
+    attendance.push({
+
+        date: new Date().toLocaleDateString(),
+
+        checkIn:
+            checkInTime.toLocaleTimeString(),
+
+        checkOut:
+            checkOutTime.toLocaleTimeString(),
+
+        workingHours:
+            workingHours
+
+    });
+
+    localStorage.setItem(
+        "attendance",
+        JSON.stringify(attendance)
+    );
+
+    showAttendance();
 
 }
 
@@ -118,7 +147,7 @@ window.onload = function () {
         document.getElementById("employeeId").innerHTML = "TD002";
         document.getElementById("department").innerHTML = "Operations";
         document.getElementById("designation").innerHTML = "Executive";
-
+showAttendance();
     }
 
     else if (currentUser == "TD003") {
@@ -153,5 +182,38 @@ window.onload = function () {
             new Date(localStorage.getItem("checkOutTime")).toLocaleTimeString();
 
     }
+
+}
+function showAttendance() {
+
+    let attendance =
+        JSON.parse(localStorage.getItem("attendance")) || [];
+
+    let table =
+        document.getElementById("attendanceTable");
+
+    if (!table) return;
+
+    table.innerHTML = "";
+
+    attendance.forEach(function(record) {
+
+        table.innerHTML += `
+
+        <tr>
+
+            <td>${record.date}</td>
+
+            <td>${record.checkIn}</td>
+
+            <td>${record.checkOut}</td>
+
+            <td>${record.workingHours}</td>
+
+        </tr>
+
+        `;
+
+    });
 
 }
