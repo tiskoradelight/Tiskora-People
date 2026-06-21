@@ -11,7 +11,7 @@ function login() {
     }
 
     // Employee Login
-    ```javascript
+    javascript
 else if (
     (userId === "TD001" && password === "123456") ||
     (userId === "TD002" && password === "123456") ||
@@ -24,7 +24,7 @@ else if (
     window.location.href = "employee.html";
 
 }
-```
+
 
 
     // Invalid Login
