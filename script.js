@@ -24,6 +24,7 @@ function login() {
 
     }
 
+    // Invalid Login
     else {
 
         document.getElementById("message").innerHTML =
@@ -72,85 +73,35 @@ function checkOut() {
         (difference % (1000 * 60 * 60)) / (1000 * 60)
     );
 
-    let totalHours = hours + " Hours " + minutes + " Minutes";
-
-    document.getElementById("workingHours").innerHTML = totalHours;
-
-
-    let attendance = JSON.parse(localStorage.getItem("attendance")) || [];
-
-    attendance.push({
-
-        date: new Date().toLocaleDateString(),
-
-        checkIn: checkInTime.toLocaleTimeString(),
-
-        checkOut: checkOutTime.toLocaleTimeString(),
-
-        hours: totalHours
-
-    });
-
-    localStorage.setItem("attendance", JSON.stringify(attendance));
-
-    showAttendance();
+    document.getElementById("workingHours").innerHTML =
+        hours + " Hours " + minutes + " Minutes";
 
 }
 
 
-function showAttendance() {
+function saveProfile() {
 
-    let attendance = JSON.parse(localStorage.getItem("attendance")) || [];
+    let currentUser = localStorage.getItem("currentUser");
 
-    let table = document.getElementById("attendanceTable");
+    let profile = {
 
-    if (!table) return;
+        photo: document.getElementById("photoUrl").value,
+        mobile: document.getElementById("mobile").value,
+        email: document.getElementById("email").value,
+        address: document.getElementById("address").value
 
-    table.innerHTML = "";
+    };
 
-    attendance.forEach(function(item) {
+    localStorage.setItem(currentUser + "_profile", JSON.stringify(profile));
 
-        table.innerHTML += `
-
-        <tr>
-
-            <td>${item.date}</td>
-
-            <td>${item.checkIn}</td>
-
-            <td>${item.checkOut}</td>
-
-            <td>${item.hours}</td>
-
-        </tr>
-
-        `;
-
-    });
+    alert("Profile Saved Successfully");
 
 }
-
 
 
 window.onload = function () {
 
     let currentUser = localStorage.getItem("currentUser");
-
-
-    if (localStorage.getItem("checkInTime")) {
-
-        document.getElementById("checkInTime").innerHTML =
-            new Date(localStorage.getItem("checkInTime")).toLocaleTimeString();
-
-    }
-
-    if (localStorage.getItem("checkOutTime")) {
-
-        document.getElementById("checkOutTime").innerHTML =
-            new Date(localStorage.getItem("checkOutTime")).toLocaleTimeString();
-
-    }
-
 
     if (currentUser == "TD001") {
 
@@ -188,25 +139,19 @@ window.onload = function () {
 
     }
 
-    showAttendance();
 
-}
+    if (localStorage.getItem("checkInTime")) {
 
-function saveProfile() {
+        document.getElementById("checkInTime").innerHTML =
+            new Date(localStorage.getItem("checkInTime")).toLocaleTimeString();
 
-    let currentUser = localStorage.getItem("currentUser");
+    }
 
-    let profile = {
+    if (localStorage.getItem("checkOutTime")) {
 
-        photo: document.getElementById("photoUrl").value,
-        mobile: document.getElementById("mobile").value,
-        email: document.getElementById("email").value,
-        address: document.getElementById("address").value
+        document.getElementById("checkOutTime").innerHTML =
+            new Date(localStorage.getItem("checkOutTime")).toLocaleTimeString();
 
-    };
-
-    localStorage.setItem(currentUser + "_profile", JSON.stringify(profile));
-
-    alert("Profile Saved Successfully");
+    }
 
 }
